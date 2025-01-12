@@ -9,18 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="cobblestone.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Silk.NET" Version="2.22.0" />
     <PackageReference Include="StbImageSharp" Version="2.30.15" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="cobblestone.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Folder Include="Shaders\" />
   </ItemGroup>
 
 </Project>
