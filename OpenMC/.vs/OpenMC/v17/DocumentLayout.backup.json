@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|c:\\users\\peckj\\onedrive\\desktop\\github repositories\\openmc\\openmc\\openmc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|solutionrelative:openmc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|c:\\users\\peckj\\onedrive\\desktop\\github repositories\\openmc\\openmc\\openmc\\openmc.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|solutionrelative:openmc\\openmc.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OpenMC",
+              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\OpenMC.csproj",
+              "RelativeDocumentMoniker": "OpenMC\\OpenMC.csproj",
+              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\OpenMC.csproj",
+              "RelativeToolTip": "OpenMC\\OpenMC.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-12T05:43:13.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Program.cs",
+              "RelativeDocumentMoniker": "OpenMC\\Program.cs",
+              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Program.cs",
+              "RelativeToolTip": "OpenMC\\Program.cs",
+              "ViewState": "AgIAAJsAAAAAAAAAAADwv7AAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T03:48:53.242Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
