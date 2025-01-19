@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OpenMC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b3a8db8853d8c4278a0683d4b33bb5069ee97d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7241f2a32c085f671fb361bad2fc1bd771c7bfa")]
 [assembly: System.Reflection.AssemblyProductAttribute("OpenMC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OpenMC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
