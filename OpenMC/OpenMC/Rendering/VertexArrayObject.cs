@@ -1,7 +1,6 @@
-﻿using System;
-using Silk.NET.OpenGL;
+﻿using Silk.NET.OpenGL;
 
-namespace OpenMC
+namespace OpenMC.Rendering
 {
     public class VertexArrayObject<TVertexType, TIndexType> : IDisposable
         where TVertexType : unmanaged

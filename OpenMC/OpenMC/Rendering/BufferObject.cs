@@ -1,7 +1,6 @@
 ﻿using Silk.NET.OpenGL;
-using System;
 
-namespace OpenMC
+namespace OpenMC.Rendering
 {
     public class BufferObject<TDataType> : IDisposable
         where TDataType : unmanaged
@@ -18,7 +17,7 @@ namespace OpenMC
 
             _handle = _gl.GenBuffer();
             Bind();
-            fixed(void* d = data)
+            fixed (void* d = data)
             {
                 _gl.BufferData(bufferType, (nuint)(data.Length * sizeof(TDataType)), d, BufferUsageARB.StaticDraw);
             }

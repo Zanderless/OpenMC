@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Numerics;
 using OpenMC.Blocks;
 using OpenMC.World;
+using OpenMC.Rendering;
 
 namespace OpenMC
 {
@@ -15,16 +16,7 @@ namespace OpenMC
         private static GL _gl;
         private static IWindow _window;
         private static IKeyboard _keyboard;
-
-        private static BufferObject<float> _vbo;
-        private static BufferObject<uint> _ebo;
-        private static VertexArrayObject<float, uint> _vao;
-
-        private static Shader _blockShader;
-        private static Shader _lampShader;
-        private static Vector3 _lampPosition = new Vector3(1.0f, 18.0f, -1.0f);
-
-        private static Texture _texture;
+        private static Renderer _renderer;
 
         private static Camera _camera;
         private static Vector2 _lastMousePosition;
@@ -58,24 +50,7 @@ namespace OpenMC
             _gl = _window.CreateOpenGL();
             _gl.ClearColor(Color.CornflowerBlue);
 
-            _block = new Block(BlockType.cobblestone, Vector3.Zero);
-            _chunk = new Chunk(32, 16, 32);
-
-            _ebo = new BufferObject<uint>(_gl, _chunk.GetIndices(), BufferTargetARB.ElementArrayBuffer);
-            _vbo = new BufferObject<float>(_gl, _chunk.GetMeshData(), BufferTargetARB.ArrayBuffer);
-            _vao = new VertexArrayObject<float, uint>(_gl, _vbo, _ebo);
-
-            _vao.VertexAttributePointer(0, 3, VertexAttribPointerType.Float, 9, 0);
-            _vao.VertexAttributePointer(1, 3, VertexAttribPointerType.Float, 9, 3);
-            _vao.VertexAttributePointer(2, 3, VertexAttribPointerType.Float, 9, 6);
-
-            _blockShader = new Shader(_gl, "shader.vert", "block.frag");
-            _lampShader = new Shader(_gl, "shader.vert", "light.frag");
-
-            _texture = new Texture(_gl, 16, 16);
-
-            _gl.Enable(EnableCap.CullFace);
-            _gl.CullFace(GLEnum.Back);
+            _chunk = new Chunk(16, 128, 16);
 
             var size = _window.FramebufferSize;
 
@@ -83,6 +58,13 @@ namespace OpenMC
             //Vector3 spawnPos = new Vector3(0, 0, 5);
 
             _camera = new Camera(spawnPos, Vector3.UnitZ * -1, Vector3.UnitY, (float)size.X / size.Y);
+
+            _renderer = new Renderer(_gl, _camera);
+
+            _renderer.SetMeshData(_chunk.GetMeshData(), _chunk.GetIndices());
+            _renderer.SetShader("shader.vert", "block.frag");
+
+            _renderer.CreateMesh();
 
             IInputContext input = _window.CreateInput();
             _keyboard = input.Keyboards.FirstOrDefault();
@@ -111,6 +93,11 @@ namespace OpenMC
                 _camera.Position += moveSpeed * _camera.Right;
             else if (_keyboard.IsKeyPressed(Key.A))
                 _camera.Position -= moveSpeed * _camera.Right;
+
+            if (_keyboard.IsKeyPressed(Key.Space))
+                _camera.Position += moveSpeed * _camera.Up;
+            else if(_keyboard.IsKeyPressed(Key.ShiftLeft))
+                _camera.Position -= moveSpeed * _camera.Up;
         }
 
         private static unsafe void OnRender(double deltaTime)
@@ -118,10 +105,8 @@ namespace OpenMC
             _gl.Enable(EnableCap.DepthTest);
             _gl.Clear((uint)(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit));
 
-            _vao.Bind();
-
-            RenderMesh();
-            //RenderLampCube();
+            uint vertexCount = (uint)_chunk.GetMeshData().Length / 9; //9 is the length of a data set in meshData
+            _renderer.RenderMesh(vertexCount);
         }
 
         private static void OnFramebufferResize(Vector2D<int> newSize)
@@ -130,47 +115,9 @@ namespace OpenMC
             _camera.AspectRatio = (float)newSize.X / newSize.Y;
         }
 
-        private static unsafe void RenderMesh()
-        {
-            _blockShader.Use();
-            _texture.Bind(TextureTarget.Texture2DArray);
-
-            _blockShader.SetUniform("uModel", Matrix4x4.Identity);
-            _blockShader.SetUniform("uView", _camera.GetViewMatrix());
-            _blockShader.SetUniform("uProjection", _camera.GetProjectionMatrix());
-            _blockShader.SetUniform("uTexture", 0);
-            _blockShader.SetUniform("uLightColor", Vector3.One);
-            _blockShader.SetUniform("uLightPos", _lampPosition);
-            _blockShader.SetUniform("uLayerCount", 3);
-
-            uint count = 3 + 3 + 3; //This is how many floats are in a single vertex
-            uint vertexCount = (uint)_chunk.GetMeshData().Length / count;
-
-            _gl.DrawArrays(PrimitiveType.Triangles, 0, vertexCount);
-        }
-
-        private static unsafe void RenderLampCube()
-        {
-            _lampShader.Use();
-
-            var lampMatrix = Matrix4x4.Identity;
-            lampMatrix *= Matrix4x4.CreateScale(0.2f);
-            lampMatrix *= Matrix4x4.CreateTranslation(_lampPosition);
-
-            _lampShader.SetUniform("uModel", lampMatrix);
-            _lampShader.SetUniform("uView", _camera.GetViewMatrix());
-            _lampShader.SetUniform("uProjection", _camera.GetProjectionMatrix());
-
-            _gl.DrawArrays(PrimitiveType.Triangles, 0, 36);
-        }
-
         private static void OnClose()
         {
-            _vbo.Dispose();
-            _ebo.Dispose();
-            _vao.Dispose();
-            _blockShader.Dispose();
-            _lampShader.Dispose();
+            _renderer.Dispose();
         }
 
         private static void KeyDown(IKeyboard keyboard, Key key, int keyCode)
