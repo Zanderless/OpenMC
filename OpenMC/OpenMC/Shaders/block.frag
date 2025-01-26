@@ -2,11 +2,13 @@
 
 in vec3 fPos;
 in vec3 fNormal;
-in vec2 fUV;
+in vec3 fUV;
 
-uniform sampler2D uTexture;
+uniform sampler2DArray uTexture;
 uniform vec3 uLightColor;
 uniform vec3 uLightPos;
+
+uniform int uLayerCount;
 
 out vec4 out_color;
 
@@ -22,5 +24,9 @@ void main()
 
 	vec3 result = (ambient + diffuse);
 
-	out_color = texture(uTexture, fUV) * vec4(result, 1.0);
+	float layer = max(0, min(uLayerCount - 1, floor(fUV.z + 0.5)));
+	vec3 uv = fUV;
+	uv.z = layer;
+
+	out_color = texture(uTexture, uv) * vec4(result, 1.0);
 }

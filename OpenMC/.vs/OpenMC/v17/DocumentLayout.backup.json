@@ -19,20 +19,12 @@
       "RelativeMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|solutionrelative:openmc\\shaders\\shader.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|c:\\users\\peckj\\onedrive\\desktop\\github repositories\\openmc\\openmc\\openmc\\shaders\\light.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|solutionrelative:openmc\\shaders\\light.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|c:\\users\\peckj\\onedrive\\desktop\\github repositories\\openmc\\openmc\\openmc\\texture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|solutionrelative:openmc\\texture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|c:\\users\\peckj\\onedrive\\desktop\\github repositories\\openmc\\openmc\\openmc\\bufferobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|solutionrelative:openmc\\bufferobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|c:\\users\\peckj\\onedrive\\desktop\\github repositories\\openmc\\openmc\\openmc\\shader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|solutionrelative:openmc\\shader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|c:\\users\\peckj\\onedrive\\desktop\\github repositories\\openmc\\openmc\\openmc\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|solutionrelative:openmc\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|c:\\users\\peckj\\onedrive\\desktop\\github repositories\\openmc\\openmc\\openmc\\world\\chunk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63F0468A-B3E1-4FCA-BC9E-FF3205F9D707}|OpenMC\\OpenMC.csproj|solutionrelative:openmc\\world\\chunk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,8 +34,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Program.cs",
+              "RelativeDocumentMoniker": "OpenMC\\Program.cs",
+              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Program.cs",
+              "RelativeToolTip": "OpenMC\\Program.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAuwJIAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T03:48:53.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Texture.cs",
+              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Texture.cs",
+              "RelativeDocumentMoniker": "OpenMC\\Texture.cs",
+              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Texture.cs",
+              "RelativeToolTip": "OpenMC\\Texture.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAswDQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-23T16:40:28.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Chunk.cs",
+              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\World\\Chunk.cs",
+              "RelativeDocumentMoniker": "OpenMC\\World\\Chunk.cs",
+              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\World\\Chunk.cs",
+              "RelativeToolTip": "OpenMC\\World\\Chunk.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAiwEgAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T05:38:54.125Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -52,22 +83,9 @@
               "RelativeDocumentMoniker": "OpenMC\\Block.cs",
               "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Block.cs",
               "RelativeToolTip": "OpenMC\\Block.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAEwAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAGsAAAAAAAAAAADwv38AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-19T06:11:59.457Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BufferObject.cs",
-              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\BufferObject.cs",
-              "RelativeDocumentMoniker": "OpenMC\\BufferObject.cs",
-              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\BufferObject.cs",
-              "RelativeToolTip": "OpenMC\\BufferObject.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T04:27:25.329Z",
               "EditorCaption": ""
             },
             {
@@ -78,22 +96,9 @@
               "RelativeDocumentMoniker": "OpenMC\\Shaders\\shader.vert",
               "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Shaders\\shader.vert",
               "RelativeToolTip": "OpenMC\\Shaders\\shader.vert",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-01-18T19:13:14.44Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Program.cs",
-              "RelativeDocumentMoniker": "OpenMC\\Program.cs",
-              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Program.cs",
-              "RelativeToolTip": "OpenMC\\Program.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAswEIAAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T03:48:53.242Z",
               "EditorCaption": ""
             },
             {
@@ -104,48 +109,9 @@
               "RelativeDocumentMoniker": "OpenMC\\Shaders\\block.frag",
               "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Shaders\\block.frag",
               "RelativeToolTip": "OpenMC\\Shaders\\block.frag",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-01-18T18:36:48.639Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Camera.cs",
-              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Camera.cs",
-              "RelativeDocumentMoniker": "OpenMC\\Camera.cs",
-              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Camera.cs",
-              "RelativeToolTip": "OpenMC\\Camera.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA8wCgAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T18:26:46.02Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "light.frag",
-              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Shaders\\light.frag",
-              "RelativeDocumentMoniker": "OpenMC\\Shaders\\light.frag",
-              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Shaders\\light.frag",
-              "RelativeToolTip": "OpenMC\\Shaders\\light.frag",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-18T18:36:04.505Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Shader.cs",
-              "DocumentMoniker": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Shader.cs",
-              "RelativeDocumentMoniker": "OpenMC\\Shader.cs",
-              "ToolTip": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\Shader.cs",
-              "RelativeToolTip": "OpenMC\\Shader.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAwwGIAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T19:03:33.556Z",
               "EditorCaption": ""
             }
           ]

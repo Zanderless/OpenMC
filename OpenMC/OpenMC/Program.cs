@@ -5,6 +5,7 @@ using Silk.NET.OpenGL;
 using System.Drawing;
 using System.Numerics;
 using OpenMC.Blocks;
+using OpenMC.World;
 
 namespace OpenMC
 {
@@ -21,7 +22,7 @@ namespace OpenMC
 
         private static Shader _blockShader;
         private static Shader _lampShader;
-        private static Vector3 _lampPosition = new Vector3(1.2f, 1.0f, 2.0f);
+        private static Vector3 _lampPosition = new Vector3(1.0f, 18.0f, -1.0f);
 
         private static Texture _texture;
 
@@ -29,12 +30,13 @@ namespace OpenMC
         private static Vector2 _lastMousePosition;
 
         private static Block _block;
+        private static Chunk _chunk;
 
         public static void Main(string[] args)
         {
             WindowOptions options = WindowOptions.Default with
             {
-                Size = new Vector2D<int>(800, 600),
+                Size = new Vector2D<int>(1200, 900),
                 Title = "OpenMC - Indev 0.0.1"
             };
 
@@ -57,22 +59,30 @@ namespace OpenMC
             _gl.ClearColor(Color.CornflowerBlue);
 
             _block = new Block(BlockType.cobblestone, Vector3.Zero);
+            _chunk = new Chunk(32, 16, 32);
 
-            _ebo = new BufferObject<uint>(_gl, _block.GetIndicies(), BufferTargetARB.ElementArrayBuffer);
-            _vbo = new BufferObject<float>(_gl, _block.GetMeshData(), BufferTargetARB.ArrayBuffer);
+            _ebo = new BufferObject<uint>(_gl, _chunk.GetIndices(), BufferTargetARB.ElementArrayBuffer);
+            _vbo = new BufferObject<float>(_gl, _chunk.GetMeshData(), BufferTargetARB.ArrayBuffer);
             _vao = new VertexArrayObject<float, uint>(_gl, _vbo, _ebo);
 
-            _vao.VertexAttributePointer(0, 3, VertexAttribPointerType.Float, 8, 0);
-            _vao.VertexAttributePointer(1, 3, VertexAttribPointerType.Float, 8, 3);
-            _vao.VertexAttributePointer(2, 2, VertexAttribPointerType.Float, 8, 6);
+            _vao.VertexAttributePointer(0, 3, VertexAttribPointerType.Float, 9, 0);
+            _vao.VertexAttributePointer(1, 3, VertexAttribPointerType.Float, 9, 3);
+            _vao.VertexAttributePointer(2, 3, VertexAttribPointerType.Float, 9, 6);
 
             _blockShader = new Shader(_gl, "shader.vert", "block.frag");
             _lampShader = new Shader(_gl, "shader.vert", "light.frag");
 
-            _texture = new Texture(_gl, "cobblestone.png");
+            _texture = new Texture(_gl, 16, 16);
+
+            _gl.Enable(EnableCap.CullFace);
+            _gl.CullFace(GLEnum.Back);
 
             var size = _window.FramebufferSize;
-            _camera = new Camera(Vector3.UnitZ * 6, Vector3.UnitZ * -1, Vector3.UnitY, (float)size.X / size.Y);
+
+            Vector3 spawnPos = new Vector3(_chunk.Size.X / 2, _chunk.Size.Y + 2, _chunk.Size.Z / 2);
+            //Vector3 spawnPos = new Vector3(0, 0, 5);
+
+            _camera = new Camera(spawnPos, Vector3.UnitZ * -1, Vector3.UnitY, (float)size.X / size.Y);
 
             IInputContext input = _window.CreateInput();
             _keyboard = input.Keyboards.FirstOrDefault();
@@ -90,7 +100,7 @@ namespace OpenMC
 
         private static void OnUpdate(double deltaTime)
         {
-            var moveSpeed = 2.5f * (float)deltaTime;
+            var moveSpeed = 5.5f * (float)deltaTime;
 
             if (_keyboard.IsKeyPressed(Key.W))
                 _camera.Position += moveSpeed * _camera.Forward;
@@ -111,7 +121,7 @@ namespace OpenMC
             _vao.Bind();
 
             RenderMesh();
-            RenderLampCube();
+            //RenderLampCube();
         }
 
         private static void OnFramebufferResize(Vector2D<int> newSize)
@@ -123,16 +133,20 @@ namespace OpenMC
         private static unsafe void RenderMesh()
         {
             _blockShader.Use();
-            _texture.Bind(TextureUnit.Texture0);
+            _texture.Bind(TextureTarget.Texture2DArray);
 
-            _blockShader.SetUniform("uModel", Matrix4x4.CreateRotationY(MathUtils.DegreesToRadians(25f)));
+            _blockShader.SetUniform("uModel", Matrix4x4.Identity);
             _blockShader.SetUniform("uView", _camera.GetViewMatrix());
             _blockShader.SetUniform("uProjection", _camera.GetProjectionMatrix());
             _blockShader.SetUniform("uTexture", 0);
             _blockShader.SetUniform("uLightColor", Vector3.One);
             _blockShader.SetUniform("uLightPos", _lampPosition);
+            _blockShader.SetUniform("uLayerCount", 3);
 
-            _gl.DrawArrays(PrimitiveType.Triangles, 0, 36);
+            uint count = 3 + 3 + 3; //This is how many floats are in a single vertex
+            uint vertexCount = (uint)_chunk.GetMeshData().Length / count;
+
+            _gl.DrawArrays(PrimitiveType.Triangles, 0, vertexCount);
         }
 
         private static unsafe void RenderLampCube()
