@@ -1,10 +1,13 @@
 ﻿using OpenMC.World;
+using Silk.NET.OpenAL;
 using Silk.NET.OpenGL;
+using Silk.NET.Windowing;
+using System.Drawing;
 using System.Numerics;
 
 namespace OpenMC.Rendering
 {
-    public class Renderer : IDisposable
+    public class Mesh
     {
         private GL _gl;
 
@@ -47,14 +50,14 @@ namespace OpenMC.Rendering
             _gl.CullFace(GLEnum.Back);
         }
 
-        public void RenderMesh(uint vertexCount)
+        public void RenderMesh(Transform transform, uint vertexCount)
         {
             _vao.Bind();
 
             _shader.Use();
             _texture.Bind(TextureTarget.Texture2DArray);
 
-            _shader.SetUniform("uModel", Matrix4x4.Identity);
+            _shader.SetUniform("uModel", transform.ViewMatrix);
             _shader.SetUniform("uView", _activeCamera.GetViewMatrix());
             _shader.SetUniform("uProjection", _activeCamera.GetProjectionMatrix());
             _shader.SetUniform("uTexture", 0);
@@ -65,10 +68,10 @@ namespace OpenMC.Rendering
             _gl.DrawArrays(PrimitiveType.Triangles, 0, vertexCount);
         }
 
-        public Renderer(GL gl, Camera camera)
+        public Mesh(GL gl)
         {
             _gl = gl;
-            _activeCamera = camera;
+            _activeCamera = Program._camera;
         }
 
         public void Dispose()

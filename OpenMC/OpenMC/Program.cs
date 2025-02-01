@@ -7,22 +7,20 @@ using System.Numerics;
 using OpenMC.Blocks;
 using OpenMC.World;
 using OpenMC.Rendering;
+using OpenMC.Noise;
 
 namespace OpenMC
 {
     class Program
     {
+        public static Camera _camera { get; private set; }
+        public static GL _gl { get; private set; }
 
-        private static GL _gl;
+
         private static IWindow _window;
         private static IKeyboard _keyboard;
-        private static Renderer _renderer;
-
-        private static Camera _camera;
+        private static WorldManager _world;
         private static Vector2 _lastMousePosition;
-
-        private static Block _block;
-        private static Chunk _chunk;
 
         public static void Main(string[] args)
         {
@@ -47,24 +45,19 @@ namespace OpenMC
 
         private static unsafe void OnLoad()
         {
-            _gl = _window.CreateOpenGL();
+            _gl = GL.GetApi(_window);
             _gl.ClearColor(Color.CornflowerBlue);
+            Console.WriteLine(_gl == null);
 
-            _chunk = new Chunk(16, 128, 16);
+            Vector3 spawnPos = new Vector3(WorldManager.chunkSize.X / 2, WorldManager.chunkSize.Y + 2, WorldManager.chunkSize.Z / 2);
+            //Vector3 spawnPos = new Vector3(0, 0, 5);
 
             var size = _window.FramebufferSize;
 
-            Vector3 spawnPos = new Vector3(_chunk.Size.X / 2, _chunk.Size.Y + 2, _chunk.Size.Z / 2);
-            //Vector3 spawnPos = new Vector3(0, 0, 5);
-
             _camera = new Camera(spawnPos, Vector3.UnitZ * -1, Vector3.UnitY, (float)size.X / size.Y);
 
-            _renderer = new Renderer(_gl, _camera);
-
-            _renderer.SetMeshData(_chunk.GetMeshData(), _chunk.GetIndices());
-            _renderer.SetShader("shader.vert", "block.frag");
-
-            _renderer.CreateMesh();
+            _world = new WorldManager();
+            _world.CreateWorld(1234);
 
             IInputContext input = _window.CreateInput();
             _keyboard = input.Keyboards.FirstOrDefault();
@@ -105,8 +98,7 @@ namespace OpenMC
             _gl.Enable(EnableCap.DepthTest);
             _gl.Clear((uint)(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit));
 
-            uint vertexCount = (uint)_chunk.GetMeshData().Length / 9; //9 is the length of a data set in meshData
-            _renderer.RenderMesh(vertexCount);
+            _world.OnRender();
         }
 
         private static void OnFramebufferResize(Vector2D<int> newSize)
@@ -117,7 +109,7 @@ namespace OpenMC
 
         private static void OnClose()
         {
-            _renderer.Dispose();
+            _world.Dispose();
         }
 
         private static void KeyDown(IKeyboard keyboard, Key key, int keyCode)

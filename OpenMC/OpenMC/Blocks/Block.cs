@@ -12,9 +12,11 @@ namespace OpenMC.Blocks
     public class Block
     {
 
-        private Vector3 _position;
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public bool IsTransparent { get; set; } = false;
 
-        //Block Information
+        private Vector3 _position;
         private BlockType _blockType = BlockType.cobblestone;
 
         //Mesh
@@ -86,8 +88,6 @@ namespace OpenMC.Blocks
         private void UpdateTextureIndex()
         {
             uint index = (uint)_blockType - 1;
-
-            Console.WriteLine(index);
 
             for(int i = 8; i < _meshData.Length; i += 9)
             {

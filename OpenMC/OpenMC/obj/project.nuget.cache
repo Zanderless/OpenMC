@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "dZphR+6/nVY=",
+  "dgSpecHash": "2NeREQTiCpM=",
   "success": true,
   "projectFilePath": "C:\\Users\\peckj\\OneDrive\\Desktop\\Github Repositories\\OpenMC\\OpenMC\\OpenMC\\OpenMC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\peckj\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\peckj\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",
     "C:\\Users\\peckj\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0\\microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512",
+    "C:\\Users\\peckj\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\peckj\\.nuget\\packages\\silk.net\\2.22.0\\silk.net.2.22.0.nupkg.sha512",
     "C:\\Users\\peckj\\.nuget\\packages\\silk.net.core\\2.22.0\\silk.net.core.2.22.0.nupkg.sha512",
     "C:\\Users\\peckj\\.nuget\\packages\\silk.net.glfw\\2.22.0\\silk.net.glfw.2.22.0.nupkg.sha512",

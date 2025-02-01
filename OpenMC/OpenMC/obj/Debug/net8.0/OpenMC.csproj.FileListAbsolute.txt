@@ -37,3 +37,4 @@ C:\Users\peckj\OneDrive\Desktop\Github Repositories\OpenMC\OpenMC\OpenMC\bin\Deb
 C:\Users\peckj\OneDrive\Desktop\Github Repositories\OpenMC\OpenMC\OpenMC\obj\Debug\net8.0\OpenMC.csproj.AssemblyReference.cache
 C:\Users\peckj\OneDrive\Desktop\Github Repositories\OpenMC\OpenMC\OpenMC\obj\Debug\net8.0\OpenMC.csproj.Up2Date
 C:\Users\peckj\OneDrive\Desktop\Github Repositories\OpenMC\OpenMC\OpenMC\bin\Debug\net8.0\StbImageSharp.dll
+C:\Users\peckj\OneDrive\Desktop\Github Repositories\OpenMC\OpenMC\OpenMC\bin\Debug\net8.0\Newtonsoft.Json.dll

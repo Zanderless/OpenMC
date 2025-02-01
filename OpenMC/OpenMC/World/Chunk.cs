@@ -1,11 +1,18 @@
-﻿using System.Numerics;
+﻿using System.Drawing;
+using System.Numerics;
 using OpenMC.Blocks;
+using OpenMC.Rendering;
 
 namespace OpenMC.World
 {
     public class Chunk
     {
-        public Vector3 Size { get; private set; }
+
+        public Mesh mesh;
+        public Transform transform;
+
+        private Vector3 _size;
+        private Vector2 _position;
 
         private Block[,,] _blocks;
 
@@ -17,61 +24,43 @@ namespace OpenMC.World
             3, 4, 5,
         };
 
-        public Chunk(int sizeX, int sizeY, int sizeZ)
+        public Chunk(Vector3 size, Vector2 chunkPosition)
         {
-            Size = new Vector3(sizeX, sizeY, sizeZ);
-            GenerateChunk();
-        }
+            mesh = new Mesh(Program._gl);
 
-        public void GenerateChunk()
-        {
-            //Generate Voxel Grid and fill it with blocks
+            transform = new Transform();//Create our transform
+            transform.Position = WorldManager.ChunkToWorldCoordinates(chunkPosition);
+            _position = chunkPosition;
+
+            _size = new Vector3((uint)size.X, (uint)size.Y, (uint)size.Z);
             CreateVoxelGrid();
-
-            //Once the voxel grid is created, we'll grab and save the mesh data into an array
-            CreateMeshData();
-        }
-
-        public float[] GetMeshData()
-        {
-            return _meshData;
-        }
-
-        public uint[] GetIndices()
-        {
-            return _indices;
-        }
-
-        public bool IsBlockAir(Vector3 localPosition)
-        {
-            if (localPosition.X < 0 || localPosition.X >= Size.X
-                || localPosition.Y < 0 || localPosition.Y >= Size.Y
-                || localPosition.Z < 0 || localPosition.Z >= Size.Z)
-                return true;
-
-            return _blocks[(int)localPosition.X, (int)localPosition.Y, (int)localPosition.Z].GetBlockType() == BlockType.air;
+            GenerateMeshData();
         }
 
         private void CreateVoxelGrid()
         {
-            _blocks = new Block[(uint)Size.X, (uint)Size.Y, (uint)Size.Z];
+            _blocks = new Block[(uint)_size.X, (uint)_size.Y, (uint)_size.Z];
 
-            for (int z = 0; z < Size.Z; z++)
+            for (int z = 0; z < _size.Z; z++)
             {
-                for (int y = 0; y < Size.Y; y++)
+                for (int y = 0; y < _size.Y; y++)
                 {
-                    for (int x = 0; x < Size.X; x++)
+                    for (int x = 0; x < _size.X; x++)
                     {
+                        Vector3 cPos = WorldManager.ChunkToWorldCoordinates(_position);
+                        Vector2 pos = new Vector2(x + cPos.X, z + cPos.Z);
+
+                        float noiseLevel = WorldGeneration.SampleNoise((int)pos.X, (int)pos.Y);
+                        noiseLevel *= _size.Y;
+
                         Block b;
 
-                        if (y == Size.Y - 1)
+                        if (y == MathF.Floor(noiseLevel))
                             b = new Block(BlockType.dirt, new Vector3(x, y, z));
-                        else
-                        {
-                            Random random = new Random();
-                            int r = random.Next(100);
+                        else if(y < noiseLevel)
                             b = new Block(BlockType.cobblestone, new Vector3(x, y, z));
-                        }
+                        else
+                        b = new Block(BlockType.air, new Vector3(x, y, z));
 
                         _blocks[x, y, z] = b;
                     }
@@ -79,15 +68,15 @@ namespace OpenMC.World
             }
         }
 
-        private void CreateMeshData()
+        private void GenerateMeshData()
         {
             List<float> meshData = new List<float>();
 
-            for (int z = 0; z < Size.Z; z++)
+            for (int z = 0; z < _size.Z; z++)
             {
-                for (int y = 0; y < Size.Y; y++)
+                for (int y = 0; y < _size.Y; y++)
                 {
-                    for (int x = 0; x < Size.X; x++)
+                    for (int x = 0; x < _size.X; x++)
                     {
                         Block b = _blocks[x, y, z];
 
@@ -127,6 +116,26 @@ namespace OpenMC.World
             }
 
             _meshData = meshData.ToArray();
+        }
+
+        public float[] GetMeshData()
+        {
+            return _meshData;
+        }
+
+        public uint[] GetIndices()
+        {
+            return _indices;
+        }
+
+        public bool IsBlockAir(Vector3 localPosition)
+        {
+            if (localPosition.X < 0 || localPosition.X >= _size.X
+                || localPosition.Y < 0 || localPosition.Y >= _size.Y
+                || localPosition.Z < 0 || localPosition.Z >= _size.Z)
+                return true;
+
+            return _blocks[(int)localPosition.X, (int)localPosition.Y, (int)localPosition.Z].GetBlockType() == BlockType.air;
         }
 
     }
